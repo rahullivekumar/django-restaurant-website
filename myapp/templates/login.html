@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+
+    <link href="{% static 'css/w3.css' %}" rel="stylesheet">
+    <link href="{% static 'css/er.css' %}" rel="stylesheet">
+    <style>
+        .center-div
+    {
+     position: relative;
+     top: 250px;
+     right: 0;
+     bottom:0;
+     left: 300px;
+            width: 300px;
+            height: 450px;
+
+}
+    </style>
+</head>
+<body class="w3-image w3-mobile">
+
+
+<div class="w3-bar w3-black">
+  <a href="{% url 'home' %}" class="w3-bar-item w3-button w3-hide-small">HOME</a>
+
+        <div class="w3-right">
+        <a href="#menu" class="w3-bar-item w3-button w3-hide-small">MENU</a>
+        <a href="#menu" class="w3-bar-item w3-button w3-hide-small">SPECIAL</a>
+        <a href="#menu" class="w3-bar-item w3-button w3-hide-small">GALLERY</a>
+
+            {% if user.is_authenticated %}
+            <div class="w3-bar-item w3-text-gray w3-hide-small">Hello {{user.first_name}}</div>
+            <a href="{% url 'logout' %}" class="w3-bar-item w3-button w3-hide-small">LOGOUT</a>
+            {% else %}
+        <a href="{% url 'register' %}" class="w3-bar-item w3-button w3-hide-small">SIGNUP</a>
+            <a href="{% url 'login' %}" class="w3-bar-item w3-button w3-hide-small">LOGIN</a>
+            {% endif %}
+        </div>
+  <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="myFunction()">&#9776;</a>
+</div>
+
+<div id="demo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium">
+  <a href="{% url 'home' %}" class="w3-bar-item w3-button">HOME</a>
+
+        <a href="#menu" class="w3-bar-item w3-button">MENU</a>
+        <a href="#menu" class="w3-bar-item w3-button">SPECIAL</a>
+        <a href="#menu" class="w3-bar-item w3-button">GALLERY</a>
+
+            {% if user.is_authenticated %}
+            <div class="w3-bar-item w3-text-gray">Hello {{user.first_name}}</div>
+            <a href="{% url 'logout' %}" class="w3-bar-item w3-button">LOGOUT</a>
+            {% else %}
+        <a href="{% url 'register' %}" class="w3-bar-item w3-button">SIGNUP</a>
+            <a href="{% url 'login' %}" class="w3-bar-item w3-button">LOGIN</a>
+            {% endif %}
+</div>
+
+
+
+
+<div class="box center-div w3-card-4">
+<h2>Login </h2>
+
+<form action="login" method="post">
+    {% csrf_token %}
+    <div class="inputox">
+    <input type="text" name="username" placeholder="Username"><br>
+    </div>
+    <div class="inputox">
+    <input type="password" name="password" placeholder="Password"><br>
+    </div>
+    <input type="submit" class="save btn btn-default" value="Submit">
+</form>
+
+<div style="text-align: center" class="w3-text-white">
+    {% for message in messages %}
+    <h5>{{message}}</h5>
+    {% endfor %}
+</div>
+</div>
+
+
+<script>
+function myFunction() {
+  var x = document.getElementById("demo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else {
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+</script>
+
+
+</body>
+</html>

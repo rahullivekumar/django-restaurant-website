@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Web</title>
+    {% load static %}
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<link href="{% static 'css/w3.css' %}" rel="stylesheet">
+<style>
+    .w3-myfont
+    {
+        font-family: "Arial", cursive;
+        color: white;
+        
+    }
+    .w3-top{
+        position: relative;
+    }
+    .res{
+        font-family: "Arial",fantasy;
+        font-size: 20px;
+        position:relative;
+        bottom: 150px;
+        left: 16px;
+        color: honeydew
+    }
+    img{
+        filter: opacity(100%);
+        height: 0%;
+        width: 100%;
+
+
+    }
+
+
+    
+
+
+    </style>
+</head>
+<body>
+
+<div class="w3-top" style="position: fixed">
+<div class="w3-bar w3-black">
+  <a href="{% url 'home' %}" class="w3-bar-item w3-button w3-hide-small">HOME</a>
+
+   {% if user.is_authenticated %}
+            <a href="{% url 'reserve' %}" class="w3-bar-item w3-button ">RESERVE TABLE</a>
+        {% else %}
+        <a href="{% url 'login' %}" class="w3-bar-item w3-button">RESERVE TABLE</a>
+         {% endif %}
+
+        <div class="w3-right">
+        <a href="#menu" class="w3-bar-item w3-button w3-hide-small">MENU</a>
+        <a href="#menu" class="w3-bar-item w3-button w3-hide-small">SPECIAL</a>
+        <a href="#menu" class="w3-bar-item w3-button w3-hide-small">GALLERY</a>
+
+            {% if user.is_authenticated %}
+            <div class="w3-bar-item w3-text-gray w3-hide-small">Hello {{user.first_name}}</div>
+            <a href="{% url 'logout' %}" class="w3-bar-item w3-button w3-hide-small">LOGOUT</a>
+            {% else %}
+        <a href="{% url 'register' %}" class="w3-bar-item w3-button w3-hide-small">SIGNUP</a>
+            <a href="{% url 'login' %}" class="w3-bar-item w3-button w3-hide-small">LOGIN</a>
+            {% endif %}
+        </div>
+  <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="myFunction()">&#9776;</a>
+</div>
+<div id="demo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium">
+  <a href="{% url 'home' %}" class="w3-bar-item w3-button">HOME</a>
+
+        <a href="#menu" class="w3-bar-item w3-button">MENU</a>
+        <a href="#menu" class="w3-bar-item w3-button">SPECIAL</a>
+        <a href="#menu" class="w3-bar-item w3-button">GALLERY</a>
+
+            {% if user.is_authenticated %}
+            <div class="w3-bar-item w3-text-gray">Hello {{user.first_name}}</div>
+            <a href="{% url 'logout' %}" class="w3-bar-item w3-button">LOGOUT</a>
+            {% else %}
+        <a href="{% url 'register' %}" class="w3-bar-item w3-button">SIGNUP</a>
+            <a href="{% url 'login' %}" class="w3-bar-item w3-button">LOGIN</a>
+            {% endif %}
+</div>
+</div>
+
+    
+
+    
+    <div class="w3-row-padding">
+        <h2 class="w3-text-white">__________</h2>
+
+        <h2 style="text-align: center; ">THE RESTAURANT</h2>
+        <h6 style="text-align: center">A little about us and a breif history of how we started</h6>
+        <h3 style="text-align: center; text-decoration-line: underline; color: gold;  border-bottom-width: thick; ">_________________   </h3>
+    </div>
+    
+    <div class="container w3-row-padding" style="align-content: center; position: relative">
+        <div class="w3-half w3-padding-large">
+            <img src="{% static 'food2.jpg' %}" style="height:auto; position: relative;">
+        </div>
+        <div class="w3-half w3-padding-large">
+            <img src="{% static 'food2.jpg' %}" style="height:auto; position: relative">
+        </div>
+        
+        <div class="w3-padding-large">
+            <h6 style="text-align: justify-all">  A restaurant  or an eatery, is a business that prepares and serves food and drinks to customers in exchange for money. Meals are generally served and eaten on the premises, but many restaurants also offer take-out and food delivery services. Restaurants vary greatly in appearance and offerings, including a wide variety of cuisines and service models ranging from inexpensive fast food restaurants and cafeterias, to mid-priced family restaurants, to high-priced luxury establishments.
+
+In Western countries, most mid- to high-range restaurants serve alcoholic beverages such as beer and wine.
+                Some restaurants serve all the major meals, such as breakfast, lunch, and dinner (e.g., major fast food chains, diners, hotel restaurants, and airport restaurants).
+                Other restaurants may serve only a single meal (for example, a pancake house may only serve breakfast) or they may serve two meals (e.g., lunch and dinner).</h6>
+        
+        
+        </div>
+        
+
+    
+    </div>
+    <div class="w3-container w3-pale-brown" >
+        <p class="w3-xxlarge" style="text-align:center; "> OUR SPECIALS</p>
+
+    </div>
+    
+    <div class="w3-row-padding">
+         <div class="w3-third w3-border-left w3-border-right">
+            <header class="w3-container w3-center"><h3>Maxwell Cookies</h3></header>
+            <div class="w3-container">
+                <img src="{% static 'food.jpg' %}">
+            
+            </div>
+            <footer class="w3-container">
+
+            {% if user.is_authenticated %}
+            <a href="{% url 'reserve' %}" class="w3-center w3-text-black"><h4>RESERVE TABLE</h4></a>
+        {% else %}
+        <a href="{% url 'login' %}" class="w3-center"><h4 class="w3-myfont w3-text-black">RESERVE TABLE</h4></a>
+         {% endif %}
+
+
+
+            </footer>
+        </div>
+        
+        <div class="w3-third w3-border-left w3-border-right">
+            <header class="w3-container w3-center"><h3>Maxwell Cookies</h3></header>
+            <div class="w3-container">
+                <img src="{% static 'food.jpg' %}">
+            
+            </div>
+         <footer class="w3-container">
+
+            {% if user.is_authenticated %}
+            <a href="{% url 'reserve' %}" class="w3-center w3-text-black"><h4>RESERVE TABLE</h4></a>
+        {% else %}
+        <a href="{% url 'login' %}" class="w3-center"><h4 class="w3-myfont w3-text-black">RESERVE TABLE</h4></a>
+         {% endif %}
+            </footer>
+        </div>
+        
+         <div class="w3-third w3-border-right w3-border-left">
+            <header class="w3-container w3-center"><h3>Maxwell Cookies</h3></header>
+            <div class="w3-container">
+                <img src="{% static 'food.jpg' %}">
+            
+            </div>
+            <footer class="w3-container">
+
+            {% if user.is_authenticated %}
+            <a href="{% url 'reserve' %}" class="w3-center w3-text-black"><h4>RESERVE TABLE</h4></a>
+        {% else %}
+        <a href="{% url 'login' %}" class="w3-center"><h4 class="w3-myfont w3-text-black">RESERVE TABLE</h4></a>
+         {% endif %}
+            </footer>
+        </div>
+        
+    
+    </div>
+
+
+<div class="w3-container " id="menu">
+  <div class="w3-content" style="max-width:700px">
+
+    <h5 class="w3-center w3-padding-48"><span class="w3-tag w3-wide">THE MENU</span></h5>
+
+    <div class="w3-row w3-center w3-card w3-padding">
+      <a href="javascript:void(0)" onclick="openMenu(event, 'Eat');" id="myLink">
+        <div class="w3-col s6 tablink">Eat</div>
+      </a>
+      <a href="javascript:void(0)" onclick="openMenu(event, 'Drinks');">
+        <div class="w3-col s6 tablink">Drink</div>
+      </a>
+    </div>
+
+    <div id="Eat" class="w3-container menu w3-padding-48 w3-card w3-sand">
+      <h5>Bread Basket</h5>
+      <p class="w3-text-grey">Assortment of fresh baked fruit breads and muffins 5.50</p><br>
+
+      <h5>Honey Almond Granola with Fruits</h5>
+      <p class="w3-text-grey">Natural cereal of honey toasted oats, raisins, almonds and dates 7.00</p><br>
+
+      <h5>Belgian Waffle</h5>
+      <p class="w3-text-grey">Vanilla flavored batter with malted flour 7.50</p><br>
+
+      <h5>Scrambled eggs</h5>
+      <p class="w3-text-grey">Scrambled eggs, roasted red pepper and garlic, with green onions 7.50</p><br>
+
+      <h5>Blueberry Pancakes</h5>
+      <p class="w3-text-grey">With syrup, butter and lots of berries 8.50</p>
+    </div>
+
+    <div id="Drinks" class="w3-container menu w3-padding-48 w3-card w3-sand">
+      <h5>Coffee</h5>
+      <p class="w3-text-grey">Regular coffee 2.50</p><br>
+
+      <h5>Chocolato</h5>
+      <p class="w3-text-grey">Chocolate espresso with milk 4.50</p><br>
+
+      <h5>Corretto</h5>
+      <p class="w3-text-grey">Whiskey and coffee 5.00</p><br>
+
+      <h5>Iced tea</h5>
+      <p class="w3-text-grey">Hot tea, except not hot 3.00</p><br>
+
+      <h5>Soda</h5>
+      <p class="w3-text-grey">Coke, Sprite, Fanta, etc. 2.50</p>
+    </div>
+    <img src="{% static 'urt.jpg' %}" style="width:100%;max-width:1000px;margin-top:32px;">
+  </div>
+</div>
+
+
+<div class="w3-row-padding">
+        <h2 style="text-align: center; ">THE GALLERY</h2>
+        <h6 style="text-align: center">A little about us and a breif history of how we started</h6>
+        <h3 style="text-align: center; text-decoration-line: underline; color: gold;  border-bottom-width: thick; ">_________________   </h3>
+    </div>
+
+ <div class="w3-row-padding">
+         <div class="w3-third w3-border-left w3-border-right">
+
+            <div class="w3-container">
+                <img src="{% static 'urt.jpg' %}">
+
+            </div>
+
+        </div>
+
+        <div class="w3-third w3-border-left w3-border-right">
+
+            <div class="w3-container">
+                <img src="{% static 'urt.jpg' %}">
+
+            </div>
+
+        </div>
+
+         <div class="w3-third w3-border-right w3-border-left">
+
+            <div class="w3-container">
+                <img src="{% static 'urt.jpg' %}">
+
+            </div>
+
+        </div>
+
+
+    </div>
+<br>
+<div class="w3-row-padding">
+         <div class="w3-third w3-border-left w3-border-right w3-border-bottom">
+            <div class="w3-container">
+                <img src="{% static 'io.jpg' %}">
+
+            </div>
+
+        </div>
+
+        <div class="w3-third w3-border-left w3-border-right w3-border-bottom">
+            <header></header>
+            <div class="w3-container">
+                <img src="{% static 'io.jpg' %}">
+
+            </div>
+
+        </div>
+
+         <div class="w3-third w3-border-right w3-border-left">
+
+            <div class="w3-container">
+                <img src="{% static 'io.jpg' %}">
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+<div class="w3-row-padding">
+  <div class="w3-col s8 w3-black">jjjjhjhghgh<br>jhjhdhdks<br>dhjshjkshhjfskj<br>ghshshjsdh</div>
+  <div class="w3-col s4 w3-black"><button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-white w3-large">CONTACT US</button>
+
+  <div id="id01" class="w3-modal">
+    <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
+
+      <div class="w3-center"><br>
+        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright w3-text-black" title="Close Modal">&times;</span>
+        <h3 class="w3-center w3-text-black">CONTACT US</h3>
+      </div>
+
+      <form class="w3-container" action="">
+        <div class="w3-section">
+          <label class="w3-text-black"><b>Username</b></label>
+          <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Username" name="usrname" required>
+          <label class="w3-text-black"><b>Password</b></label>
+          <input class="w3-input w3-border" type="password" placeholder="Enter Password" name="psw" required>
+          <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit">Login</button>
+          <input class="w3-check w3-margin-top" type="checkbox" checked="checked"> Remember me
+        </div>
+      </form>
+
+      <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+        <button onclick="document.getElementById('id01').style.display='none'" type="button" class="w3-button w3-red">Cancel</button>
+        <span class="w3-right w3-padding w3-hide-small">Forgot <a href="#">password?</a></span>
+      </div>
+
+    </div>
+  </div><br>
+  PHONE NO: <br>
+      Address:
+
+  </div>
+
+</div>
+
+
+<script>
+// Tabbed Menu
+function openMenu(evt, menuName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("menu");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" w3-dark-grey", "");
+  }
+  document.getElementById(menuName).style.display = "block";
+  evt.currentTarget.firstElementChild.className += " w3-dark-grey";
+}
+document.getElementById("myLink").click();
+</script>
+
+
+<script>
+function myFunction() {
+  var x = document.getElementById("demo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else {
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+</script>
+
+    
+    
+    
+    
+</body>
+</html>
